@@ -1,4 +1,4 @@
-@"
+
 # My Java Programs
 
 This repository includes beginner-level Java programs such as:
@@ -22,4 +22,4 @@ This repository includes beginner-level Java programs such as:
 
 **Keerthivasan B**  
 Anna University → MIT Campus
-"@ | Set-Content README.md
+
