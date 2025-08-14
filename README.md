@@ -11,6 +11,7 @@ This repository includes beginner-level Java programs such as:
 - **emailid.java** – Creates the email address using first 3 letters of first name, last 3 of last name, age, and last 2 digits of employee ID  
 - **staircaseway.java** – Calculates ways to climb stairs (1 or 2 steps at a time)
 - **shop.java** - Maintain the Coustomer details in the grocery shop
+- **employee.java** - Calculate the Amount of Pay for the Employees
 
 ## How to Run
 
