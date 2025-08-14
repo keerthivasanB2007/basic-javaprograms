@@ -12,6 +12,7 @@ This repository includes beginner-level Java programs such as:
 - **staircaseway.java** – Calculates ways to climb stairs (1 or 2 steps at a time)
 - **shop.java** - Maintain the Coustomer details in the grocery shop
 - **employee.java** - Calculate the Amount of Pay for the Employees
+- **Atm.java** - Manage debit, credit, Balance of the user Bank Account
 
 ## How to Run
 
