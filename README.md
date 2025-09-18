@@ -13,6 +13,7 @@ This repository includes beginner-level Java programs such as:
 - **shop.java** - Maintain the Coustomer details in the grocery shop
 - **employee.java** - Calculate the Amount of Pay for the Employees
 - **Atm.java** - Manage debit, credit, Balance of the user Bank Account
+- **NestedBowl.java** - Java program to solve the Nested Bowls Problem by sorting bowl sizes and finding the maximum number that can fit inside one another.
 
 ## How to Run
 
