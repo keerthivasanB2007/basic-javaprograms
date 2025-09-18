@@ -1,76 +1,100 @@
 import java.util.Scanner;
+class empl{
+    int id;
+    int overtime;
+    empl(int id,int o){
+        this.id=id;
+        this.overtime=o;
+    }
+}
+public class employee{
+    static class rankcalculator{
+        public static int[] assignrank(empl[] e){
+            int n=e.length;
+            int[] rank=new int[n];
+            for(int i=1;i<=n;i++){
+                rank[i-1]=i;
+            }
+            for(int i=0;i<n;i++){
+                for(int j=0;j<n-1;j++){
+                    if(e[j].overtime<e[j+1].overtime){
+                       empl temp=e[j];
+                       e[j]= e[j+1];
+                       e[j+1]=temp;
 
-class Employee{
-        static int count;
-        static double total;
-        static double hour;
-        static int s=100;
-        double t;
-        int h;
-       Employee(int h){
-             this.h=h;
-              count++;
-             tot();
-         }
-      void tot(){
-             if(h>40){
-                   t=(40)*s + (h-40)*((1.5)*s);
-                   total=total+t;
-                
+                       int t= rank[j];
+                       rank[j]=rank[j+1];
+                       rank[j+1]=t;
+                    }
                 }
-              else{
-                  t=h*s;
-                  total=total+t;
+
+            }
+            return rank;
+        }
+    }
+    class token{
+        empl e;
+        int rank;
+        token(empl e,int rank){
+            this.e=e;
+            this.rank=rank;
+        }
+        public String generatetoken(){
+            class lastdigit{
+                int get3digit(int id){
+                    return id%1000;
                 }
             }
-       
-      static void showstatic(){
-             System.out.println("Total number of Employees: "+ count );
-             System.out.println("Total Pay: "+total);
-        }
-        void display(int i){
-            System.out.println(" Employee "+i+"      "+h+"    "+t);
-          }
-  }
-public class employee{
-      public static void main(String args[]){
-                  Scanner sc=new Scanner(System.in);
-                   Employee[] e=new Employee[100];
-                  int h,i=0,choice;
-                 while(true){
-                     System.out.println("menu:");
-                     System.out.println("1.employee working hour");
-                     System.out.println("2.Exit");
-                     System.out.println("press 1 for entering employee working hours else 0 for 'EXIT'");
-                     System.out.println("Enter your choice:");
-                     choice=sc.nextInt();
-                     if(choice==1){
-                            System.out.println("enter the working hours of the Employee: ");
-                            h=sc.nextInt();
-                            if(h<0){
-                              System.out.println("!!WORKING HOURS MUST BE POSITIVE!!");
-                              continue;
-                            }
-          
-                           e[i]=new Employee(h);
-                            i=i+1;
-                          }
-                   else{
-                       System.out.println("Exiting....");
-                       break;
-                  }
-                }
-                System.out.println(" Employees     hours    pay");
-                for(int n=0;n<i;n++){
-                          e[n].display(n+1);
-                  }
-                Employee.showstatic();
+            lastdigit ld=new lastdigit();
+            int last=ld.get3digit(e.id);
+            return String.format("%03d",last) + ""+rank;        }
+    }
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter no. of employees : ");
+        int n,id,overtime;
+        n=sc.nextInt();
+       empl []e=new empl[n];
+       for(int i=0;i<n;i++){
+           System.out.println("Enter Employee "+(i+1)+" Details");
+           while(true){
+               System.out.print("Employee ID : ");
+               id=sc.nextInt();
+               if(id<=0){
+                System.out.println("ID must be positive!!");
+                continue;
+               }
+               else
+                 break;
+           }
+           while(true){
+               System.out.print("Enter overtime : ");
+               overtime=sc.nextInt();
+               if(overtime<0 || overtime>8){
+                System.out.println("Employee Overtime should be Positive and less than 8");
+                continue;
+               }
+               else
+                break;
+           }
+           e[i]=new empl(id,overtime);
        }
-}
-                      
+       int[] rank=rankcalculator.assignrank(e);
+       employee ets = new employee();
+       System.out.println("\n-------------Employee Tokens--------------");
+       for(int i=0;i<n;i++){
+      //  token tg=ets.new token(e[i],rank[i]);
+         empl emp=e[i];
+            int r=rank[i];
+            token tg=ets.new token(emp,r);
+        Runnable display = new Runnable(){
            
-             
-                  
-        
- 
-        
+            public void run(){
+                System.out.println("Employee Id : "+ emp.id + " | Overtime : " + emp.overtime + " | Rank : " + r + " | Token: " + tg.generatetoken());
+            }
+        };
+        display.run();
+            }
+        }
+       }
+    
